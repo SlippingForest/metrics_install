@@ -1,11 +1,11 @@
 #!/bin/bash
 
+clear
 if [ "$EUID" -ne 0 ]; then
     echo "Please run as root"
     exit
 fi
 
-clear
 read -p "source link: " installer_link
 while ! [[ $installer_link == *"dl=0"* ]]; do
     clear
@@ -41,9 +41,9 @@ default_user=$(last pts/0 -1 | awk '{print $1; exit}')
 default_user_directory=$(eval echo ~$default_user)
 
 # Define the service name and description
-SERVICE_NAME=metrics
-SERVICE_DESC="Protect Deposit MT&MB metrics"
-
+SERVICE_NAME=metrics-exporter
+SERVICE_DESC="Exporter metrics MT&MB"
+``
 # Check if the directory exists
 APP_PATH=$default_user_directory/$SERVICE_NAME
 if [ ! -d "$APP_PATH" ]; then
