@@ -45,7 +45,7 @@ Description=$SERVICE_DESC
 After=network.target
 
 [Service]
-User=root
+User=$default_user
 WorkingDirectory=$APP_PATH
 ExecStart=$GO_EXEC
 Restart=always
@@ -53,6 +53,9 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+
+# Change the owner of the app directory to the default user
+sudo chown -R $default_user:$default_user $APP_PATH
 
 # Reload systemd to load the new service file
 sudo systemctl daemon-reload
@@ -65,3 +68,10 @@ sudo systemctl enable $SERVICE_NAME
 
 # Print status information about the service
 sudo systemctl status $SERVICE_NAME
+
+# Print commands
+echo "To check the logs, run: sudo journalctl -u $SERVICE_NAME"
+echo "To start the service, run: sudo systemctl start $SERVICE_NAME"
+echo "To stop the service, run: sudo systemctl stop $SERVICE_NAME"
+echo "To restart the service, run: sudo systemctl restart $SERVICE_NAME"
+echo "To check the status of the service, run: sudo systemctl status $SERVICE_NAME"
