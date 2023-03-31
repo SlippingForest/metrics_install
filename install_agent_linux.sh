@@ -45,7 +45,7 @@ Description=$SERVICE_DESC
 After=network.target
 
 [Service]
-User=$default_user
+User=root
 ExecStart=$GO_EXEC
 Restart=always
 
