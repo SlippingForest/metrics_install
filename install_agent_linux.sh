@@ -46,7 +46,7 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=$GO_EXEC
+WorkingDirectory=$APP_PATH
 ExecStart=$GO_EXEC
 Restart=always
 
